@@ -1,4 +1,5 @@
 // Trabalho 2 - Compressao de Huffman
+// Alunos: Leonardo Beduschi, Lucas Piva e Deusdith
 // Disciplina: Estruturas de Dados
 // Aplicacao de COMPRESSAO
 
