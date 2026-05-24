@@ -47,6 +47,48 @@ void liberar(NoArvore *&raiz) {
     raiz = NULL;
 }
 
+bool remover_no(NoArvore *&raiz, NoArvore *alvo) {
+    if (raiz == NULL || alvo == NULL) return false;
+
+    // caso especial: o proprio no raiz eh o alvo
+    if (raiz == alvo) {
+        liberar(raiz); // raiz passa a ser NULL
+        return true;
+    }
+
+    // percorre a arvore procurando o pai do no alvo
+    // usa uma pilha manual para nao precisar de recursao com retorno duplo
+    // implementado de forma iterativa com busca pre-fixada
+    NoArvore *pilha[512];
+    int topo = 0;
+    pilha[topo++] = raiz;
+
+    while (topo > 0) {
+        NoArvore *atual = pilha[--topo];
+
+        // verifica se o filho esquerdo eh o alvo
+        if (atual->esq == alvo) {
+            liberar(atual->esq); // remove o filho e seus descendentes
+            atual->esq = NULL;
+            return true;
+        }
+
+        // verifica se o filho direito eh o alvo
+        if (atual->dir == alvo) {
+            liberar(atual->dir);
+            atual->dir = NULL;
+            return true;
+        }
+
+        // empilha os filhos para continuar a busca
+        if (atual->dir != NULL) pilha[topo++] = atual->dir;
+        if (atual->esq != NULL) pilha[topo++] = atual->esq;
+    }
+
+    return false; // no nao encontrado na arvore
+}
+
+
 // Salva a arvore no arquivo usando pre-fixado
 // Formato: '1' + caractere para folha, '0' para no interno
 void salvar_arvore(NoArvore *raiz, FILE *arq) {
