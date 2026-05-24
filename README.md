@@ -24,20 +24,34 @@ ola mundo teste huffman
 Execute:
 
 ```bash
-./compressor.exe meutexto.txt
+./compressor.exe
+```
+
+O programa irá solicitar o nome do arquivo:
+
+```txt
+=== Compressor de Huffman ===
+Digite o nome do arquivo a comprimir: texto.txt
 ```
 
 Arquivos gerados:
 
-- `meutexto.txt.huf`
-- `meutexto.txt.arv`
+- `teste.txt.huf`
+- `teste.txt.arv`
 
 ## Executar o Descompressor
 
 Execute:
 
 ```bash
-./descompressor.exe meutexto.txt.huf
+./descompressor.exe
+```
+
+O programa irá solicitar o nome do arquivo comprimido:
+
+```txt
+=== Descompressor de Huffman ===
+Digite o nome do arquivo a descomprimir: texto.txt.huf
 ```
 
 O programa irá gerar o arquivo recuperado com o conteúdo original.
